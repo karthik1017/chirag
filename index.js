@@ -3,7 +3,10 @@ const app = express();
 const { routes } = require('./routes/routes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const port = 5000;
+const port = 6000;
+const db = require('./config/db');
+const keys = require('./config/keys')
+
 const helmet = require('helmet');
 
 app.use(helmet());
@@ -35,6 +38,6 @@ app.use(cors());
 
 app.use('/',routes);
 
-app.listen(5000, () => {
+app.listen(6000, () => {
     console.log(`Listening on port ${port}`);
 });
