@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
-const { routes } = require('./routes/routes');
+const { routes } = require('./routings/routes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const port = 6000;
-const db = require('./config/db');
-const keys = require('./config/keys')
-
+const port = 9999;
 const helmet = require('helmet');
+const mongoose = require('mongoose');
+const db = require('./config/db');
+const keys = require('./config/keys');
+const router = express.Router();
 
 app.use(helmet());
 
@@ -37,7 +38,9 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use('/',routes);
+// app.use(app.router);
+// routes.initialize(app)
 
-app.listen(6000, () => {
-    console.log(`Listening on port ${port}`);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
